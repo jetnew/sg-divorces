@@ -84,24 +84,30 @@ st.markdown("As mentioned, growing up, I was *surprised* by how many of my frien
 st.markdown("As we saw previously, we can expect divorce rates in the age group of 40-69 to increase up to 9% by 2030, which roughly translates to **1 in 10 people**. This is an especially worrying trend. It suggests the need to establish strong support systems for children as parents at that age divorce. To these children, know that you are not alone, and seek help if you need.")
 
 
-st.subheader("Question to ponder: Why are more males married yet more females are divorced?")
-st.markdown("Why does the married rate difference across genders differ for divorce rates?")
+st.subheader("Questions to ponder:")
+st.markdown("Why does the married rate difference across genders differ for divorce rates? Why is the difference between genders for both married and divorce rates increasing over time? Most importantly, why are divorce rates increasing in the first place, and what should we do?")
 cols_total = list(range(0, 90, 15))
 cols_married = list(range(2, 90, 15))
 cols_divorced = list(range(4, 90, 15))
+cols_single = list(range(1, 90, 15))
 cols_total_male = list(range(5, 90, 15))
 cols_married_male = list(range(7, 90, 15))
 cols_divorced_male = list(range(9, 90, 15))
+cols_single_male = list(range(6, 90, 15))
 cols_total_female = list(range(10, 90, 15))
 cols_married_female = list(range(12, 90, 15))
 cols_divorced_female = list(range(14, 90, 15))
+cols_single_female = list(range(11, 90, 15))
 df_married_rate = df[cols_married].sum(axis=1) / df[cols_total].sum(axis=1) * 100
 df_married_rate_male = df[cols_married_male].sum(axis=1) / df[cols_total_male].sum(axis=1) * 100
 df_married_rate_female = df[cols_married_female].sum(axis=1) / df[cols_total_female].sum(axis=1) * 100
 df_divorce_rate = df[cols_divorced].sum(axis=1) / df[cols_total].sum(axis=1) * 100
 df_divorce_rate_male = df[cols_divorced_male].sum(axis=1) / df[cols_total_male].sum(axis=1) * 100
 df_divorce_rate_female = df[cols_divorced_female].sum(axis=1) / df[cols_total_female].sum(axis=1) * 100
-fig, (ax1, ax2) = plt.subplots(1, 2)
+df_single_rate = df[cols_single].sum(axis=1) / df[cols_total].sum(axis=1) * 100
+df_single_rate_male = df[cols_single_male].sum(axis=1) / df[cols_total_male].sum(axis=1) * 100
+df_single_rate_female = df[cols_single_female].sum(axis=1) / df[cols_total_female].sum(axis=1) * 100
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1)
 ax1.set_title("Married rate (%) by gender")
 ax1.plot(df_married_rate, label='All')
 ax1.plot(df_married_rate_male, label='Male')
@@ -112,6 +118,12 @@ ax2.plot(df_divorce_rate, label='All')
 ax2.plot(df_divorce_rate_male, label='Male')
 ax2.plot(df_divorce_rate_female, label='Female')
 ax2.legend(loc='best')
+ax3.set_title("Single rate (%) by gender")
+ax3.plot(df_single_rate, label='All')
+ax3.plot(df_single_rate_male, label='Male')
+ax3.plot(df_single_rate_female, label='Female')
+ax3.legend(loc='best')
+plt.tight_layout()
 st.pyplot(fig)
-st.markdown("A good friend (thanks Shiying! :)) raised the possibility that men could be more likely to re-marry. What do you think?")
-st.markdown("View the code: [GitHub](https://github.com/jetnew/sg-divorces)")
+st.markdown("A good friend (thanks Shiying! :)) raised a possiblity that men could be more likely to re-marry. What do you think?")
+st.warning("View the code: [GitHub](https://github.com/jetnew/sg-divorces)")
